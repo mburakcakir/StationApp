@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AsisCTStationApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

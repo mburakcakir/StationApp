@@ -1,7 +1,8 @@
-package com.mburakcakir.stationapp
+package com.mburakcakir.stationapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.mburakcakir.stationapp.R
 import com.mburakcakir.stationapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
