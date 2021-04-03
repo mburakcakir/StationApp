@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mburakcakir.stationapp.databinding.FragmentStationBinding
+import com.mburakcakir.stationapp.network.model.Bus
 import com.mburakcakir.stationapp.util.navigate
 
 class StationFragment : Fragment() {
@@ -42,7 +43,8 @@ class StationFragment : Fragment() {
 
         stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
             binding.station = responseStation.stations[0]
-            stationAdapter.submitList(responseStation.stations[0].buses)
+            val sortedList = sortList(responseStation.stations[0].buses as MutableList<Bus>)
+            stationAdapter.submitList(sortedList)
         }
 
         stationAdapter.apply {
@@ -52,6 +54,13 @@ class StationFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun sortList(bustList: MutableList<Bus>): MutableList<Bus> {
+        bustList.sortBy {
+            it.remainingTime
+        }
+        return bustList
     }
 
 }
