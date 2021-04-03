@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.mburakcakir.stationapp.databinding.FragmentHomeBinding
+import com.mburakcakir.stationapp.databinding.FragmentStationBinding
 
 class StationFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentStationBinding? = null
     private val binding get() = _binding!!
 
     private val stationAdapter = StationAdapter()
@@ -23,7 +23,7 @@ class StationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentStationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,8 +42,10 @@ class StationFragment : Fragment() {
 
         stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
             Log.v("buses", responseStation.stations[0].buses.toString())
+            binding.station = responseStation.stations[0].stationName
             stationAdapter.submitList(responseStation.stations[0].buses)
         }
+
     }
 
 }

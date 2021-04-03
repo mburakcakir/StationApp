@@ -15,17 +15,15 @@ class StationAdapter : ListAdapter<Bus, StationViewHolder>(StationCallback()) {
         )
     }
 
-    override fun onBindViewHolder(holder: StationViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: StationViewHolder, position: Int) =
         holder.bind(getItem(position))
-    }
-
 }
 
 class StationViewHolder(
     val binding: RvItemStationBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(busModel: Bus) {
-
+        binding.bus = busModel
     }
 }
 
