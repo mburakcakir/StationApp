@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,75 +11,17 @@
             type="com.mburakcakir.stationapp.network.model.Station" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.station.StationFragment">
 
-        <View
-            android:id="@+id/viewHeader"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin_medium"
-            app:layout_constraintBottom_toBottomOf="@id/txtStationName"
-            app:layout_constraintEnd_toEndOf="parent"
+        <include
+            android:id="@+id/includeHeader"
+            layout="@layout/layout_header_station"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtStationName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_medium"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_big"
-            android:text="@{station.stationCode}"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/viewHeader"
-            app:layout_constraintTop_toTopOf="@id/viewHeader" />
-
-        <TextView
-            android:id="@+id/txtStationCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:text="@{station.stationName}"
-            android:textSize="@dimen/text_size_big"
-            app:layout_constraintStart_toEndOf="@id/txtStationName"
-            app:layout_constraintTop_toTopOf="@id/viewHeader" />
-
-        <!--        <Space-->
-        <!--            android:id="@+id/spaceImage"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintEnd_toStartOf="@id/txtBusRouteCode"-->
-        <!--            app:layout_constraintHorizontal_bias="0.2"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/viewLine" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/txtBusRouteCode"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:gravity="center"-->
-        <!--            android:text="@string/route_name"-->
-        <!--            app:layout_constraintEnd_toStartOf="@id/txtBusRemainingTime"-->
-        <!--            app:layout_constraintHorizontal_bias="0.4"-->
-        <!--            app:layout_constraintStart_toEndOf="@id/spaceImage"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/viewLine" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/txtBusRemainingTime"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:gravity="center"-->
-        <!--            android:text="@string/remaining_time"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintHorizontal_bias="0.4"-->
-        <!--            app:layout_constraintStart_toEndOf="@id/txtBusRouteCode"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/viewLine" />-->
+            app:layout_constraintTop_toTopOf="parent"
+            bind:station="@{station}" />
 
         <View
             android:id="@+id/viewLine"
@@ -85,15 +30,13 @@
             android:layout_marginTop="@dimen/margin_big"
             android:background="@color/grayDarker"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtStationName" />
-
+            app:layout_constraintTop_toBottomOf="@id/includeHeader" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvStationList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_low"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

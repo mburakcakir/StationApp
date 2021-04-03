@@ -3,15 +3,22 @@
 
     <data>
 
+        <import type="com.mburakcakir.stationapp.R" />
+
         <variable
             name="bus"
             type="com.mburakcakir.stationapp.network.model.Bus" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/margin_low"
+        app:backgroundResource="@{position % 2 == 1? R.color.grayLighter : R.color.white}"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -20,6 +27,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/txtBusRouteCode" />
@@ -55,6 +63,7 @@
             android:gravity="center"
             android:layout_marginEnd="@dimen/margin_big"
             android:textStyle="bold"
+            android:textColor="@{position==0? @color/red : @color/black}"
             android:text="@{Integer.toString(bus.remainingTime) + ` min`}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imgRightArrow"
