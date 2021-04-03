@@ -29,7 +29,7 @@
     </fragment>
     <dialog
         android:id="@+id/mapDialog"
-        android:name="com.mburakcakir.stationapp.ui.location.GoogleMapSearchDialog"
+        android:name="com.mburakcakir.stationapp.ui.location.dialog.GoogleMapSearchDialog"
         android:label="MapDialog">
         <argument
             android:name="location"

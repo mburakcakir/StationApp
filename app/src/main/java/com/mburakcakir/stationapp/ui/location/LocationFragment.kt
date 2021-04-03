@@ -25,7 +25,7 @@ class LocationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLocationBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -40,28 +40,18 @@ class LocationFragment : Fragment() {
         val location = bus.location
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(locationViewModel.setGoogleMapCallback(bus))
+
+        mapFragment?.getMapAsync(
+            locationViewModel.setGoogleMapCallback(
+                bus = bus,
+                zoom = 18f,
+                duration = 100
+            )
+        )
 
         locationViewModel.setOnMarkerClickListener {
             this.navigate(LocationFragmentDirections.actionLocationFragmentToMapDialog(location))
         }
     }
-
-//    private val googleMapCallback = OnMapReadyCallback { googleMap ->
-//        val location = args.bus.location
-//        val currentLocation = LatLng(location.latitude, location.longitude)
-//
-//        googleMap.apply {
-//            addMarker(
-//                MarkerOptions()
-//                    .position(currentLocation)
-//                    .title(args.bus.plate)
-//                    .snippet(locationViewModel.getLocationAddressByLatLng(currentLocation))
-//                    .visible(true)
-//            )
-//            moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
-//            animateCamera(CameraUpdateFactory.newCameraPosition(locationViewModel.setCameraPosition(currentLocation)))
-//        }
-//    }
 
 }

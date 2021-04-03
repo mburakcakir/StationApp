@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtStationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,18 +36,18 @@
             app:layout_constraintStart_toStartOf="@id/viewHeader"
             app:layout_constraintTop_toTopOf="@id/viewHeader" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtStationCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/margin_medium"
             android:layout_marginStart="@dimen/margin_medium"
             android:text="@{station.stationName}"
             android:textSize="@dimen/text_size_big"
             app:layout_constraintStart_toEndOf="@id/txtStationName"
             app:layout_constraintTop_toTopOf="@id/viewHeader" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

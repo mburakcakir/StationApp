@@ -5,7 +5,6 @@ import android.location.Geocoder
 import androidx.lifecycle.AndroidViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.mburakcakir.stationapp.network.model.Bus
@@ -29,20 +28,13 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
         this.markerOnClick = markerOnClick
     }
 
-    private fun setCameraPosition(currentLocation: LatLng): CameraPosition? {
-        return CameraPosition.builder()
-            .target(currentLocation)
-            .zoom(13f)
-            .tilt(30f)
-            .build()
-    }
-
-    fun setGoogleMapCallback(bus: Bus): OnMapReadyCallback {
+    fun setGoogleMapCallback(bus: Bus, zoom: Float, duration: Int): OnMapReadyCallback {
         return OnMapReadyCallback { googleMap ->
             val location = bus.location
             val currentLocation = LatLng(location.latitude, location.longitude)
 
             googleMap.apply {
+
                 addMarker(
                     MarkerOptions()
                         .position(currentLocation)
@@ -51,18 +43,29 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
                         .visible(true)
 
                 ).showInfoWindow()
+
                 setOnInfoWindowClickListener {
                     markerOnClick.invoke()
                 }
+
                 moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
+
                 animateCamera(
-                    CameraUpdateFactory.newCameraPosition(
-                        setCameraPosition(
-                            currentLocation
-                        )
-                    )
+                    CameraUpdateFactory.newLatLngZoom(currentLocation, zoom),
+                    duration,
+                    null
                 )
+//                animateCamera(CameraUpdateFactory.newCameraPosition(setCameraPosition(currentLocation)))
             }
         }
     }
+
+    //private fun setCameraPosition(currentLocation: LatLng): CameraPosition? {
+//        return CameraPosition.builder()
+//            .target(currentLocation)
+//            .zoom(18f)
+//            .tilt(0f)
+//            .bearing(0f)
+//            .build()
+//    }
 }

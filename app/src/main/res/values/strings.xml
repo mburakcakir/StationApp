@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AsisCT-StationApp</string>
+    <string name="app_name">Station App</string>
 
     <!-- header -->
     <string name="route_name">Route Name</string>
@@ -7,7 +7,7 @@
 
     <!-- keyword -->
     <string name="bus">Otobüs</string>
-    <string name="subway">Subway</string>
+    <string name="subway">Subway Train</string>
     <string name="metrobus">Metrobüs</string>
 
     <!-- search -->
@@ -15,9 +15,34 @@
     <string name="search_subway">Metro duraklarını ara</string>
     <string name="search_metrobus">Metrobüs duraklarını ara</string>
     <string name="hint_search">Aramak istediğinizi belirtin</string>
-
     <!-- hint, text -->
     <string name="text_search">Ara</string>
     <string name="other_option">Diğer:</string>
     <string name="search_near">Yakınımdaki</string>
+
+
+    <!-- INGILIZCE -->
+
+    <!--    <string name="app_name">Station App</string>-->
+
+    <!--    &lt;!&ndash; header &ndash;&gt;-->
+    <!--    <string name="route_name">Route Name</string>-->
+    <!--    <string name="remaining_time">Remaining Time</string>-->
+
+    <!--    &lt;!&ndash; keyword &ndash;&gt;-->
+    <!--    <string name="bus">Bus</string>-->
+    <!--    <string name="subway">Subway Train</string>-->
+    <!--    <string name="metrobus">Metrobus</string>-->
+
+    <!--    &lt;!&ndash; search &ndash;&gt;-->
+    <!--    <string name="search_bus">Bus Stations</string>-->
+    <!--    <string name="search_subway">Subway Stations</string>-->
+    <!--    <string name="search_metrobus">Metrobus Stations</string>-->
+    <!--    <string name="hint_search">Please Specify</string>-->
+    <!--    -->
+    <!--    &lt;!&ndash; hint, text &ndash;&gt;-->
+    <!--    <string name="text_search">Search</string>-->
+    <!--    <string name="other_option">Other:</string>-->
+    <!--    <string name="search_near">Find Near Me</string>-->
+
 </resources>

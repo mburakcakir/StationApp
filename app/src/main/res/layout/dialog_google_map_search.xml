@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_big">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,6 +19,15 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_max"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:background="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
@@ -30,21 +39,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtHeader">
 
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/rbBus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_big"
                 android:text="@string/search_bus" />
 
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/rbSubway"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_big"
                 android:text="@string/search_subway" />
 
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/rbMetrobus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,7 +61,7 @@
                 android:text="@string/search_metrobus" />
         </RadioGroup>
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtOtherOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,7 +81,7 @@
             android:layout_marginTop="@dimen/margin_medium"
             android:layout_marginEnd="@dimen/margin_medium"
             android:hint="@string/hint_search"
-            android:textColorHighlight="@color/black"
+            android:textColorHighlight="@color/colorPrimary"
             android:textSize="@dimen/text_size_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/txtOtherOption"
@@ -83,9 +92,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_big"
-            android:backgroundTint="@color/purple_700"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/text_search"
-            app:cornerRadius="8dp"
+            app:cornerRadius="@dimen/margin_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edtOtherOption" />
 

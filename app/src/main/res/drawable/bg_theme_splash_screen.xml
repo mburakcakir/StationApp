@@ -6,7 +6,7 @@
     <item
         android:drawable="@drawable/app_logo"
         android:gravity="center"
-        android:left="20dp"
-        android:right="20dp" />
+        android:left="@dimen/margin_max"
+        android:right="@dimen/margin_max" />
 
 </layer-list>

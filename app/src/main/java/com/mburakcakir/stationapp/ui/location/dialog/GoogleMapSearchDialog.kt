@@ -1,6 +1,5 @@
-package com.mburakcakir.stationapp.ui.location
+package com.mburakcakir.stationapp.ui.location.dialog
 
-import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mburakcakir.stationapp.R
 import com.mburakcakir.stationapp.databinding.DialogGoogleMapSearchBinding
@@ -20,14 +18,11 @@ class GoogleMapSearchDialog : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.BottomSheetDialog
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
-        BottomSheetDialog(requireContext(), theme)
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DialogGoogleMapSearchBinding.inflate(inflater, container, false)
         isCancelable = true
         return binding.root
@@ -53,6 +48,10 @@ class GoogleMapSearchDialog : BottomSheetDialogFragment() {
             binding.edtOtherOption.text?.let {
                 setGoogleMapSearch(it.toString())
             }
+        }
+
+        binding.imgClose.setOnClickListener {
+            dismiss()
         }
     }
 
