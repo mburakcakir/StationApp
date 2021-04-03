@@ -58,8 +58,9 @@ class GoogleMapSearchDialog : BottomSheetDialogFragment() {
 
     private fun setGoogleMapSearch(keyword: String) {
         val location = args.location
-        val uriString = Uri.parse("geo:${location.latitude},${location.longitude}?q=$keyword")
-        Intent(Intent.ACTION_VIEW, uriString).apply {
+        val uriString = "geo:${location.latitude},${location.longitude}?q=$keyword"
+        val uri = Uri.parse(uriString)
+        Intent(Intent.ACTION_VIEW, uri).apply {
             setPackage("com.google.android.apps.maps")
             startActivity(this)
         }

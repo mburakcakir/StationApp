@@ -64,15 +64,4 @@ class LocationFragment : Fragment() {
 //        }
 //    }
 
-    private fun showDialog() {
-//        val alertDialog = AlertDialog.Builder(requireContext())
-//        val dialogView = DialogMapSearchBinding.from(requireContext()).inflate(R.layout.dialog_map_search, null)
-//        alertDialog.setView(dialogView)
-//        val mAlertDialog = alertDialog.show().apply {
-//            setCancelable(true)
-//            window!!.setBackgroundDrawableResource(android.R.color.transparent)
-//        }
-
-    }
-
 }

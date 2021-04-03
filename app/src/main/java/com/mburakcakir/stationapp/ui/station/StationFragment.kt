@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.mburakcakir.stationapp.databinding.FragmentStationBinding
 import com.mburakcakir.stationapp.network.model.Bus
 import com.mburakcakir.stationapp.util.navigate
+import com.mburakcakir.stationapp.util.sortBusList
+import com.mburakcakir.stationapp.util.toast
 
 class StationFragment : Fragment() {
     private var _binding: FragmentStationBinding? = null
@@ -40,10 +42,10 @@ class StationFragment : Fragment() {
 
     private fun init() {
         binding.rvStationList.adapter = stationAdapter
-
         stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
             binding.station = responseStation.stations[0]
-            val sortedList = sortList(responseStation.stations[0].buses as MutableList<Bus>)
+            val sortedList = (responseStation.stations[0].buses as MutableList<Bus>).sortBusList()
+//            val sortedList = (responseStation.stations[0].buses as MutableList<Bus>).sortList(responseStation.stations[0].buses[0].remainingTime)
             stationAdapter.submitList(sortedList)
         }
 
@@ -54,13 +56,16 @@ class StationFragment : Fragment() {
                 )
             }
         }
-    }
 
-    private fun sortList(bustList: MutableList<Bus>): MutableList<Bus> {
-        bustList.sortBy {
-            it.remainingTime
-        }
-        return bustList
+        stationViewModel.result.observe(viewLifecycleOwner, {
+            when {
+                !it.success.isNullOrEmpty() -> it.success
+                !it.loading.isNullOrEmpty() -> it.loading
+                else -> it.error
+            }?.let { message ->
+                requireContext() toast message
+            }
+        })
     }
 
 }

@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mburakcakir.stationapp.R
 import com.mburakcakir.stationapp.databinding.RvItemStationBinding
 import com.mburakcakir.stationapp.network.model.Bus
 
@@ -40,21 +39,6 @@ class StationViewHolder(
             stationOnClick(bus)
         }
     }
-
-    private fun setBackgroundResource() {
-        if (adapterPosition % 2 == 1)
-            itemView.setBackgroundResource(R.color.grayLighter)
-    }
-
-//    private fun setRemainingTimeResource() {
-//            when(adapterPosition) {
-//                0 -> binding.txtBusRemainingTime.setTextColor(R.color.red)
-//                1 -> binding.txtBusRemainingTime.setTextColor()
-//            }
-//        )
-//    }
-
-
 }
 
 class StationCallback : DiffUtil.ItemCallback<Bus>() {
