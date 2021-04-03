@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">AsisCT-StationApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- header -->
+    <string name="route_name">Route Name</string>
+    <string name="remaining_time">Remaining Time</string>
+
+    <!-- keyword -->
+    <string name="bus">Otobüs</string>
+    <string name="subway">Metro</string>
+    <string name="metrobus">Metrobüs</string>
+
+    <!-- search -->
+    <string name="search_bus">Otobüs duraklarını ara</string>
+    <string name="search_subway">Metro duraklarını ara</string>
+    <string name="search_metrobus">Metrobüs duraklarını ara</string>
+    <string name="hint_search">Aramak istediğinizi belirtin</string>
+
+    <!-- hint, text -->
+    <string name="text_search">Ara</string>
+    <string name="other_option">Diğer:</string>
+    <string name="search_near">Yakınımdaki</string>
 </resources>

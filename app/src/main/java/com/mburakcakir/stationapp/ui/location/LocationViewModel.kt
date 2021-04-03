@@ -14,7 +14,7 @@ import java.util.*
 class LocationViewModel(application: Application) : AndroidViewModel(application) {
 
     private var geocoder: Geocoder = Geocoder(application, Locale.getDefault())
-
+    lateinit var markerOnClick: () -> Unit
     private fun getLocationAddressByLatLng(currentLocation: LatLng): String {
 
         val addresses = geocoder.getFromLocation(
@@ -25,11 +25,14 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
         return addresses[0].getAddressLine(0)
     }
 
+    fun setOnMarkerClickListener(markerOnClick: () -> Unit) {
+        this.markerOnClick = markerOnClick
+    }
 
     private fun setCameraPosition(currentLocation: LatLng): CameraPosition? {
         return CameraPosition.builder()
             .target(currentLocation)
-            .zoom(15f)
+            .zoom(13f)
             .tilt(30f)
             .build()
     }
@@ -46,7 +49,11 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
                         .title(bus.plate)
                         .snippet(getLocationAddressByLatLng(currentLocation))
                         .visible(true)
-                )
+
+                ).showInfoWindow()
+                setOnInfoWindowClickListener {
+                    markerOnClick.invoke()
+                }
                 moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
                 animateCamera(
                     CameraUpdateFactory.newCameraPosition(

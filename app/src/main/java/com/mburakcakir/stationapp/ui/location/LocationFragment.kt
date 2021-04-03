@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.SupportMapFragment
 import com.mburakcakir.stationapp.R
 import com.mburakcakir.stationapp.databinding.FragmentLocationBinding
+import com.mburakcakir.stationapp.util.navigate
 
 
 class LocationFragment : Fragment() {
@@ -35,8 +36,15 @@ class LocationFragment : Fragment() {
     }
 
     private fun init() {
+        val bus = args.bus
+        val location = bus.location
+
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(locationViewModel.setGoogleMapCallback(args.bus))
+        mapFragment?.getMapAsync(locationViewModel.setGoogleMapCallback(bus))
+
+        locationViewModel.setOnMarkerClickListener {
+            this.navigate(LocationFragmentDirections.actionLocationFragmentToMapDialog(location))
+        }
     }
 
 //    private val googleMapCallback = OnMapReadyCallback { googleMap ->
@@ -55,5 +63,16 @@ class LocationFragment : Fragment() {
 //            animateCamera(CameraUpdateFactory.newCameraPosition(locationViewModel.setCameraPosition(currentLocation)))
 //        }
 //    }
+
+    private fun showDialog() {
+//        val alertDialog = AlertDialog.Builder(requireContext())
+//        val dialogView = DialogMapSearchBinding.from(requireContext()).inflate(R.layout.dialog_map_search, null)
+//        alertDialog.setView(dialogView)
+//        val mAlertDialog = alertDialog.show().apply {
+//            setCancelable(true)
+//            window!!.setBackgroundDrawableResource(android.R.color.transparent)
+//        }
+
+    }
 
 }

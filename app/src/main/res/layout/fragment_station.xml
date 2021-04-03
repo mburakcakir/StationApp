@@ -19,9 +19,11 @@
             android:id="@+id/txtStationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/margin_medium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_big"
             android:text="@{station.stationCode}"
-            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,9 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/margin_medium"
             android:text="@{station.stationName}"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size_big"
             app:layout_constraintStart_toEndOf="@id/txtStationName"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,38 +42,38 @@
             android:id="@+id/spaceImage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@id/txtRouteName"
+            app:layout_constraintEnd_toStartOf="@id/txtBusRouteCode"
             app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
         <TextView
-            android:id="@+id/txtRouteName"
+            android:id="@+id/txtBusRouteCode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Route Name"
-            app:layout_constraintEnd_toStartOf="@id/txtRemainingTime"
+            android:text="@string/route_name"
+            app:layout_constraintEnd_toStartOf="@id/txtBusRemainingTime"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toEndOf="@id/spaceImage"
             app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
         <TextView
-            android:id="@+id/txtRemainingTime"
+            android:id="@+id/txtBusRemainingTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Remaining Time"
+            android:text="@string/remaining_time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toEndOf="@id/txtRouteName"
+            app:layout_constraintStart_toEndOf="@id/txtBusRouteCode"
             app:layout_constraintTop_toBottomOf="@id/viewLine" />
 
         <View
             android:id="@+id/viewLine"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/margin_medium"
             android:background="@color/gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtStationName" />
@@ -81,11 +83,11 @@
             android:id="@+id/rvStationList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="8dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtRemainingTime" />
+            app:layout_constraintTop_toBottomOf="@id/txtBusRemainingTime" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

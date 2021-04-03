@@ -23,5 +23,16 @@
         <argument
             android:name="bus"
             app:argType="com.mburakcakir.stationapp.network.model.Bus" />
+        <action
+            android:id="@+id/action_locationFragment_to_mapDialog"
+            app:destination="@id/mapDialog" />
     </fragment>
+    <dialog
+        android:id="@+id/mapDialog"
+        android:name="com.mburakcakir.stationapp.ui.location.GoogleMapSearchDialog"
+        android:label="MapDialog">
+        <argument
+            android:name="location"
+            app:argType="com.mburakcakir.stationapp.network.model.Location" />
+    </dialog>
 </navigation>
