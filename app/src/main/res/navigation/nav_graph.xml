@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/stationFragment">
 
+    <fragment
+        android:id="@+id/stationFragment"
+        android:name="com.mburakcakir.stationapp.ui.station.StationFragment"
+        android:label="StationFragment" />
 </navigation>
