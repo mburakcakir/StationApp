@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/stationFragment">
 
     <fragment
         android:id="@+id/stationFragment"
         android:name="com.mburakcakir.stationapp.ui.station.StationFragment"
-        android:label="StationFragment" />
+        android:label="StationFragment"
+        tools:layout="@layout/fragment_station">
+        <action
+            android:id="@+id/action_stationFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.mburakcakir.stationapp.ui.location.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location">
+        <argument
+            android:name="location"
+            app:argType="com.mburakcakir.stationapp.network.model.Location" />
+    </fragment>
 </navigation>

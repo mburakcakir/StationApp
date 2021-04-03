@@ -1,12 +1,12 @@
 package com.mburakcakir.stationapp.ui.station
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.mburakcakir.stationapp.databinding.FragmentStationBinding
 
 class StationFragment : Fragment() {
@@ -41,11 +41,21 @@ class StationFragment : Fragment() {
         binding.rvStationList.adapter = stationAdapter
 
         stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
-            Log.v("buses", responseStation.stations[0].buses.toString())
             binding.station = responseStation.stations[0].stationName
             stationAdapter.submitList(responseStation.stations[0].buses)
         }
 
+        stationAdapter.apply {
+            setStationOnClickListener { location ->
+//                this@StationFragment.navigate(StationFragmentDirections.actionStationFragmentToLocationFragment(location))
+                findNavController().navigate(
+                    StationFragmentDirections.actionStationFragmentToLocationFragment(
+                        location
+                    )
+                )
+//                this@StationFragment.navigate(StationFragmentDirections.actionStationFragmentToMapsFragment())
+            }
+        }
     }
 
 }

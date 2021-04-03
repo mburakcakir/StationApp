@@ -7,11 +7,20 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mburakcakir.stationapp.databinding.RvItemStationBinding
 import com.mburakcakir.stationapp.network.model.Bus
+import com.mburakcakir.stationapp.network.model.Location
 
 class StationAdapter : ListAdapter<Bus, StationViewHolder>(StationCallback()) {
+
+    private lateinit var stationOnClick: (Location) -> Unit
+
+    fun setStationOnClickListener(stationOnClick: (Location) -> Unit) {
+        this.stationOnClick = stationOnClick
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StationViewHolder {
         return StationViewHolder(
-            RvItemStationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            RvItemStationBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            stationOnClick
         )
     }
 
@@ -20,10 +29,15 @@ class StationAdapter : ListAdapter<Bus, StationViewHolder>(StationCallback()) {
 }
 
 class StationViewHolder(
-    val binding: RvItemStationBinding
+    private val binding: RvItemStationBinding,
+    private val stationOnClick: (Location) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(busModel: Bus) {
-        binding.bus = busModel
+    fun bind(bus: Bus) {
+        binding.bus = bus
+
+        itemView.setOnClickListener {
+            stationOnClick(bus.location)
+        }
     }
 }
 

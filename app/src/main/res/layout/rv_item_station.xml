@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:gravity="center"
-            android:text="@{Integer.toString(bus.remainingTime) + `min`}"
+            android:text="@{Integer.toString(bus.remainingTime) + ` min`}"
             app:layout_constraintBottom_toBottomOf="@id/imgBus"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
