@@ -7,13 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mburakcakir.stationapp.databinding.RvItemStationBinding
 import com.mburakcakir.stationapp.network.model.Bus
-import com.mburakcakir.stationapp.network.model.Location
 
 class StationAdapter : ListAdapter<Bus, StationViewHolder>(StationCallback()) {
 
-    private lateinit var stationOnClick: (Location) -> Unit
+    private lateinit var stationOnClick: (Bus) -> Unit
 
-    fun setStationOnClickListener(stationOnClick: (Location) -> Unit) {
+    fun setStationOnClickListener(stationOnClick: (Bus) -> Unit) {
         this.stationOnClick = stationOnClick
     }
 
@@ -30,13 +29,13 @@ class StationAdapter : ListAdapter<Bus, StationViewHolder>(StationCallback()) {
 
 class StationViewHolder(
     private val binding: RvItemStationBinding,
-    private val stationOnClick: (Location) -> Unit
+    private val stationOnClick: (Bus) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(bus: Bus) {
         binding.bus = bus
 
         itemView.setOnClickListener {
-            stationOnClick(bus.location)
+            stationOnClick(bus)
         }
     }
 }

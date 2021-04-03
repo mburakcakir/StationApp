@@ -46,12 +46,10 @@ class StationFragment : Fragment() {
         }
 
         stationAdapter.apply {
-            setStationOnClickListener { location ->
+            setStationOnClickListener { bus ->
 //                this@StationFragment.navigate(StationFragmentDirections.actionStationFragmentToLocationFragment(location))
                 findNavController().navigate(
-                    StationFragmentDirections.actionStationFragmentToLocationFragment(
-                        location
-                    )
+                    StationFragmentDirections.actionStationFragmentToLocationFragment(bus)
                 )
 //                this@StationFragment.navigate(StationFragmentDirections.actionStationFragmentToMapsFragment())
             }

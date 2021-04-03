@@ -11,6 +11,9 @@ buildscript {
         navigationVersion = "2.3.4"
         lifeCycleLiveDataVersion = "2.3.1"
         lifeCycleViewModelVersion = "2.3.1"
+        mapUtilsKtxVersion = "2.4.0"
+        playServicesMapsVersion = "17.0.0"
+
     }
     repositories {
         google()

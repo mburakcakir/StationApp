@@ -29,15 +29,26 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField 'String', 'API_URL', "\"https://private-ba4027-busremainingtime.apiary-mock.com/\""
+        }
+        release {
+            buildConfigField 'String', 'API_URL', "\"https://private-ba4027-busremainingtime.apiary-mock.com/\""
+        }
+    }
+
+    buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -51,7 +62,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
@@ -76,8 +87,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-    implementation 'com.google.maps.android:maps-utils-ktx:2.4.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    // Google Map
+    implementation "com.google.maps.android:maps-utils-ktx:$mapUtilsKtxVersion"
+    implementation "com.google.android.gms:play-services-maps:$playServicesMapsVersion"
 
 
 
