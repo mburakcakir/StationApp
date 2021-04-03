@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.mburakcakir.stationapp.databinding.FragmentStationBinding
+import com.mburakcakir.stationapp.util.navigate
 
 class StationFragment : Fragment() {
     private var _binding: FragmentStationBinding? = null
@@ -41,17 +41,15 @@ class StationFragment : Fragment() {
         binding.rvStationList.adapter = stationAdapter
 
         stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
-            binding.station = responseStation.stations[0].stationName
+            binding.station = responseStation.stations[0]
             stationAdapter.submitList(responseStation.stations[0].buses)
         }
 
         stationAdapter.apply {
             setStationOnClickListener { bus ->
-//                this@StationFragment.navigate(StationFragmentDirections.actionStationFragmentToLocationFragment(location))
-                findNavController().navigate(
+                this@StationFragment.navigate(
                     StationFragmentDirections.actionStationFragmentToLocationFragment(bus)
                 )
-//                this@StationFragment.navigate(StationFragmentDirections.actionStationFragmentToMapsFragment())
             }
         }
     }

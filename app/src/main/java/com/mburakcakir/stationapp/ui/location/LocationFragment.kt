@@ -5,19 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.mburakcakir.stationapp.R
 import com.mburakcakir.stationapp.databinding.FragmentLocationBinding
+
 
 class LocationFragment : Fragment() {
     private var _binding: FragmentLocationBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<LocationFragmentArgs>()
+
+    private val locationViewModel by lazy {
+        ViewModelProvider(this).get(LocationViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,15 +36,24 @@ class LocationFragment : Fragment() {
 
     private fun init() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(googleMapCallback)
+        mapFragment?.getMapAsync(locationViewModel.setGoogleMapCallback(args.bus))
     }
 
-    private val googleMapCallback = OnMapReadyCallback { googleMap ->
-        val location = args.bus.location
-        val currentLocation = LatLng(location.latitude, location.longitude)
-        googleMap.apply {
-            addMarker(MarkerOptions().position(currentLocation).title("Marker in Sydney"))
-            moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
-        }
-    }
+//    private val googleMapCallback = OnMapReadyCallback { googleMap ->
+//        val location = args.bus.location
+//        val currentLocation = LatLng(location.latitude, location.longitude)
+//
+//        googleMap.apply {
+//            addMarker(
+//                MarkerOptions()
+//                    .position(currentLocation)
+//                    .title(args.bus.plate)
+//                    .snippet(locationViewModel.getLocationAddressByLatLng(currentLocation))
+//                    .visible(true)
+//            )
+//            moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
+//            animateCamera(CameraUpdateFactory.newCameraPosition(locationViewModel.setCameraPosition(currentLocation)))
+//        }
+//    }
+
 }

@@ -5,24 +5,35 @@
 
         <variable
             name="station"
-            type="String" />
+            type="com.mburakcakir.stationapp.network.model.Station" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         tools:context=".ui.station.StationFragment">
 
         <TextView
             android:id="@+id/txtStationName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@{station}"
+            android:text="@{station.stationCode}"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtStationCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="10dp"
+            android:text="@{station.stationName}"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/txtStationName"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Space
