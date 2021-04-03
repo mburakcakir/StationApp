@@ -1,4 +1,4 @@
-package com.mburakcakir.stationapp.network
+package com.mburakcakir.stationapp.network.provider
 
 import com.mburakcakir.stationapp.BuildConfig
 import retrofit2.Retrofit

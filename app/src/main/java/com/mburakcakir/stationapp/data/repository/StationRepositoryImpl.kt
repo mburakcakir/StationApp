@@ -1,6 +1,6 @@
 package com.mburakcakir.stationapp.data.repository
 
-import com.mburakcakir.stationapp.network.StationApi
+import com.mburakcakir.stationapp.network.provider.StationApi
 import com.mburakcakir.stationapp.network.response.ResponseStation
 import com.mburakcakir.stationapp.util.Resource
 import kotlinx.coroutines.flow.Flow

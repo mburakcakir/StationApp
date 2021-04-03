@@ -47,5 +47,15 @@
             app:layout_constraintStart_toEndOf="@id/txtStationName"
             app:layout_constraintTop_toTopOf="@id/viewHeader" />
 
+        <ImageView
+            android:id="@+id/imgInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:src="@drawable/ic_info"
+            app:layout_constraintBottom_toBottomOf="@id/txtStationName"
+            app:layout_constraintEnd_toEndOf="@id/viewHeader"
+            app:layout_constraintTop_toTopOf="@id/txtStationName" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

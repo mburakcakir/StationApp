@@ -19,7 +19,7 @@ class StationViewModel(application: Application) : AndroidViewModel(application)
     private val stationRepository: StationRepository
 
     private val _result = MutableLiveData<Result>()
-    private val result: LiveData<Result> = _result
+    val result: LiveData<Result> = _result
 
     private val _stationInfo = MutableLiveData<ResponseStation>()
     val stationInfo: LiveData<ResponseStation> = _stationInfo
