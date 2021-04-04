@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.mburakcakir.stationapp.R
 import com.mburakcakir.stationapp.databinding.FragmentStationBinding
 import com.mburakcakir.stationapp.network.model.Bus
 import com.mburakcakir.stationapp.util.*
@@ -48,6 +49,8 @@ class StationFragment : Fragment() {
         setAdapter()
 
         observeResult()
+
+        infoOnClick()
     }
 
     private fun observeResult() {
@@ -62,8 +65,8 @@ class StationFragment : Fragment() {
                 }
                 else -> {
                     binding.state = StationFragmentViewState(Status.ERROR)
-                    result.error?.let {
-                        requireContext() toast it
+                    result.error?.let { error ->
+                        requireContext() toast error
                     }
 
                 }
@@ -92,7 +95,7 @@ class StationFragment : Fragment() {
         }
     }
 
-    private fun checkDataSetState() {
+    private fun checkStationDataAndSetState() {
         if (stationViewModel.stationInfo.value == null)
             stationViewModel.getStationInfo()
         else {
@@ -101,16 +104,22 @@ class StationFragment : Fragment() {
     }
 
     private fun checkInternetConnection() {
-
         val networkController = NetworkController(requireContext()).apply {
             startNetworkCallback()
         }
 
         networkController.isNetworkConnected.observe(viewLifecycleOwner) { internetConnection ->
             if (internetConnection)
-                checkDataSetState()
+                checkStationDataAndSetState()
             else
                 binding.state = StationFragmentViewState(Status.ERROR)
         }
     }
+
+    private fun infoOnClick() {
+        binding.includeHeader.imgInfo.setOnClickListener {
+            requireContext().showDialogInfo(getString(R.string.dialog_info))
+        }
+    }
+
 }

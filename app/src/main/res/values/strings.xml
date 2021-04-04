@@ -23,6 +23,9 @@
     <string name="error_internet_connection">Internet bağlantısı sağlanamadı.</string>
     <string name="success_internet_connection">Internet bağlantısı sağlandı.</string>
     <string name="success_fetch_stations">İstasyon bilgileri yüklendi.</string>
+    <string name="warning_dialog">Bilgi</string>
+    <string name="text_dialog_positive_button">Anladım</string>
+    <string name="dialog_info">Beklediğiniz otobüse tıklayarak konumunu, harita adresine tıklayarak yakınınızdaki lokasyonları görebilirsiniz.</string>
 
 
     <!-- ENGLISH -->

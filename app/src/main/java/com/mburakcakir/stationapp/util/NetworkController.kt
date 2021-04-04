@@ -27,11 +27,11 @@ class NetworkController(context: Context) {
     fun startNetworkCallback() {
         val builder = NetworkRequest.Builder()
 
-        // API 24 and above (API 24 ve yukarısı için)
+        // API 24 and above (API 24 ve yukarısı)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             connectivityManager.registerDefaultNetworkCallback(networkCallback)
         }
-        // API 23 ve below (API 23 ve aşağısı için)
+        // API 23 ve below (API 23 ve aşağısı)
         else {
             connectivityManager.registerNetworkCallback(
                 builder.build(), networkCallback
