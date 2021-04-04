@@ -2,10 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:visibility="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <import type="android.view.View" />
         <variable
             name="station"
             type="com.mburakcakir.stationapp.network.model.Station" />
@@ -13,10 +15,6 @@
         <variable
             name="state"
             type="com.mburakcakir.stationapp.ui.station.StationFragmentViewState" />
-
-        <variable
-            name="message"
-            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,18 +60,12 @@
                 android:layout_gravity="center"
                 android:visibility="@{state.progressBarVisibility}" />
 
-            <TextView
-                android:layout_width="match_parent"
+            <include
+                layout="@layout/layout_internet_connection"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/red"
-                android:gravity="center"
-                android:paddingTop="@dimen/margin_low"
-                android:paddingBottom="@dimen/margin_low"
-                android:text="@{message}"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_min"
-                android:visibility="@{state.textViewVisibility}" />
+                android:layout_gravity="center"
+                visibility:isVisible="@{state.errorMessageVisibility}" />
 
         </FrameLayout>
 

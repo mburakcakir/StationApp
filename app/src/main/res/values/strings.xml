@@ -21,6 +21,7 @@
     <string name="other_option">Diğer:</string>
     <string name="search_near">Yakınımdaki</string>
     <string name="error_internet_connection">Internet bağlantısı sağlanamadı.</string>
+    <string name="success_internet_connection">Internet bağlantısı sağlandı.</string>
 
 
     <!-- ENGLISH -->

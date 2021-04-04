@@ -14,8 +14,8 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
 
     private var geocoder: Geocoder = Geocoder(application, Locale.getDefault())
     lateinit var markerOnClick: () -> Unit
-    private fun getLocationAddressByLatLng(currentLocation: LatLng): String {
 
+    private fun getLocationAddressByLatLng(currentLocation: LatLng): String {
         val addresses = geocoder.getFromLocation(
             currentLocation.latitude,
             currentLocation.longitude,

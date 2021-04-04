@@ -11,6 +11,7 @@ import com.mburakcakir.stationapp.databinding.FragmentStationBinding
 import com.mburakcakir.stationapp.network.model.Bus
 import com.mburakcakir.stationapp.util.*
 
+
 class StationFragment : Fragment() {
     private var _binding: FragmentStationBinding? = null
     private val binding get() = _binding!!
@@ -42,6 +43,8 @@ class StationFragment : Fragment() {
     private fun init() {
         binding.rvStationList.adapter = stationAdapter
 
+        checkInternetConnection()
+
         stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
             binding.station = responseStation.stations[0]
             val sortedList = (responseStation.stations[0].buses as MutableList<Bus>).sortBusList()
@@ -56,27 +59,40 @@ class StationFragment : Fragment() {
             }
         }
 
-        stationViewModel.result.observe(viewLifecycleOwner, {
+        stationViewModel.result.observe(viewLifecycleOwner) { result ->
             when {
-                !it.success.isNullOrEmpty() -> {
+                !result.success.isNullOrEmpty() -> {
                     binding.state = StationFragmentViewState(Status.SUCCESS)
-                    requireContext() toast it.success
+                    requireContext() toast result.success
                 }
-                !it.loading.isNullOrEmpty() -> {
+                !result.loading.isNullOrEmpty() -> {
                     binding.state = StationFragmentViewState(Status.LOADING)
                 }
                 else -> {
-                    val internetConnection =
-                        NetworkController(requireContext()).isInternetAvailable()
-                    binding.message =
-                        if (!internetConnection) getString(R.string.error_internet_connection)
-                        else it.error
-
                     binding.state = StationFragmentViewState(Status.ERROR)
+                    result.error?.let {
+                        requireContext() toast it
+                    }
 
                 }
-            }
 
-        })
+            }
+        }
+    }
+
+    private fun checkInternetConnection() {
+
+        val networkController = NetworkController(requireContext()).apply {
+            startNetworkCallback()
+        }
+
+        networkController.isNetworkConnected.observe(viewLifecycleOwner) { internetConnection ->
+            if (internetConnection) {
+                binding.state = StationFragmentViewState(Status.SUCCESS)
+                requireContext() toast getString(R.string.success_internet_connection)
+            } else {
+                binding.state = StationFragmentViewState(Status.ERROR)
+            }
+        }
     }
 }

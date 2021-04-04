@@ -2,43 +2,46 @@ package com.mburakcakir.stationapp.util
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
+import android.net.Network
+import android.net.NetworkRequest
+import androidx.lifecycle.MutableLiveData
 
-class NetworkController(private val context: Context) {
+class NetworkController(context: Context) {
 
-    fun isInternetAvailable(): Boolean {
+    private var _isNetworkConnected = MutableLiveData<Boolean>()
+    var isNetworkConnected = _isNetworkConnected
 
-        var isInternetAvailable = false
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+    private val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private val networkCallback = object : ConnectivityManager.NetworkCallback() {
 
-        // API 23 and higher
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            cm?.run {
-                cm.getNetworkCapabilities(cm.activeNetwork)?.run {
-                    isInternetAvailable = when {
-                        hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-                                hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
-                                hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-                        else -> false
-                    }
-                }
-            }
+        override fun onAvailable(network: Network) {
+            _isNetworkConnected.postValue(true)
         }
-        // API 22 and lower
-        // info: App MIN SDK is 21.
-        else {
-            cm?.run {
-                cm.activeNetworkInfo?.run {
-                    if (type == ConnectivityManager.TYPE_WIFI) {
-                        isInternetAvailable = true
-                    } else if (type == ConnectivityManager.TYPE_MOBILE) {
-                        isInternetAvailable = true
-                    }
-                }
-            }
+
+        override fun onLost(network: Network) {
+            _isNetworkConnected.postValue(false)
         }
-        return isInternetAvailable
     }
+
+    fun startNetworkCallback() {
+        val builder = NetworkRequest.Builder()
+
+        // API 24 and above (API 24 ve yukarısı için)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            connectivityManager.registerDefaultNetworkCallback(networkCallback)
+        }
+        // API 23 ve below (API 23 ve aşağısı için)
+        else {
+            connectivityManager.registerNetworkCallback(
+                builder.build(), networkCallback
+            )
+        }
+    }
+
+    fun stopNetworkCallback() {
+        connectivityManager.unregisterNetworkCallback(ConnectivityManager.NetworkCallback())
+    }
+
 }
 
