@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.mburakcakir.stationapp.R
 import com.mburakcakir.stationapp.databinding.FragmentStationBinding
 import com.mburakcakir.stationapp.network.model.Bus
 import com.mburakcakir.stationapp.util.*
@@ -41,24 +40,17 @@ class StationFragment : Fragment() {
     }
 
     private fun init() {
-        binding.rvStationList.adapter = stationAdapter
 
         checkInternetConnection()
 
-        stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
-            binding.station = responseStation.stations[0]
-            val sortedList = (responseStation.stations[0].buses as MutableList<Bus>).sortBusList()
-            stationAdapter.submitList(sortedList)
-        }
+        observeStation()
 
-        stationAdapter.apply {
-            setStationOnClickListener { bus ->
-                this@StationFragment.navigate(
-                    StationFragmentDirections.actionStationFragmentToLocationFragment(bus)
-                )
-            }
-        }
+        setAdapter()
 
+        observeResult()
+    }
+
+    private fun observeResult() {
         stationViewModel.result.observe(viewLifecycleOwner) { result ->
             when {
                 !result.success.isNullOrEmpty() -> {
@@ -80,6 +72,34 @@ class StationFragment : Fragment() {
         }
     }
 
+    private fun setAdapter() {
+        binding.rvStationList.adapter = stationAdapter
+
+        stationAdapter.apply {
+            setStationOnClickListener { bus ->
+                this@StationFragment.navigate(
+                    StationFragmentDirections.actionStationFragmentToLocationFragment(bus)
+                )
+            }
+        }
+    }
+
+    private fun observeStation() {
+        stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
+            binding.station = responseStation.stations[0]
+            val sortedList = (responseStation.stations[0].buses as MutableList<Bus>).sortBusList()
+            stationAdapter.submitList(sortedList)
+        }
+    }
+
+    private fun checkDataSetState() {
+        if (stationViewModel.stationInfo.value == null)
+            stationViewModel.getStationInfo()
+        else {
+            binding.state = StationFragmentViewState(Status.SUCCESS)
+        }
+    }
+
     private fun checkInternetConnection() {
 
         val networkController = NetworkController(requireContext()).apply {
@@ -87,12 +107,10 @@ class StationFragment : Fragment() {
         }
 
         networkController.isNetworkConnected.observe(viewLifecycleOwner) { internetConnection ->
-            if (internetConnection) {
-                binding.state = StationFragmentViewState(Status.SUCCESS)
-                requireContext() toast getString(R.string.success_internet_connection)
-            } else {
+            if (internetConnection)
+                checkDataSetState()
+            else
                 binding.state = StationFragmentViewState(Status.ERROR)
-            }
         }
     }
 }

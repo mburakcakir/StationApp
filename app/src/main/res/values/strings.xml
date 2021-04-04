@@ -22,6 +22,7 @@
     <string name="search_near">Yakınımdaki</string>
     <string name="error_internet_connection">Internet bağlantısı sağlanamadı.</string>
     <string name="success_internet_connection">Internet bağlantısı sağlandı.</string>
+    <string name="success_fetch_stations">İstasyon bilgileri yüklendi.</string>
 
 
     <!-- ENGLISH -->

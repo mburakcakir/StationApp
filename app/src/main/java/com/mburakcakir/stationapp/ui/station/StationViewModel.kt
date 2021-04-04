@@ -29,7 +29,7 @@ class StationViewModel(application: Application) : AndroidViewModel(application)
         getStationInfo()
     }
 
-    private fun getStationInfo() = viewModelScope.launch {
+    fun getStationInfo() = viewModelScope.launch {
         stationRepository.getStationInfo()
             .onStart {
                 _result.value = Result(loading = "İstasyon Bilgileri Yükleniyor")
