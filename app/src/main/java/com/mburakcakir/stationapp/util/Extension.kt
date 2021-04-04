@@ -21,11 +21,3 @@ fun MutableList<Bus>.sortBusList(): MutableList<Bus> {
     }
     return this
 }
-
-//fun <T>MutableList<T>.sortList(parameter : Int): MutableList<T> {
-//    this.sortBy {
-//        parameter
-//    }
-//    return this
-//}
-

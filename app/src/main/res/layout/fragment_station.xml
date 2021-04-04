@@ -9,6 +9,14 @@
         <variable
             name="station"
             type="com.mburakcakir.stationapp.network.model.Station" />
+
+        <variable
+            name="state"
+            type="com.mburakcakir.stationapp.ui.station.StationFragmentViewState" />
+
+        <variable
+            name="message"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,14 +40,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/includeHeader" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvStationList"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin_low"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewLine" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewLine">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvStationList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_low"
+                android:visibility="@{state.recyclerViewVisibility}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{state.progressBarVisibility}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/red"
+                android:gravity="center"
+                android:paddingTop="@dimen/margin_low"
+                android:paddingBottom="@dimen/margin_low"
+                android:text="@{message}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_min"
+                android:visibility="@{state.textViewVisibility}" />
+
+        </FrameLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

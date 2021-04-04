@@ -14,7 +14,7 @@ class StationRepositoryImpl : StationRepository {
         try {
             val response = apiService.getStationInfo()
             if (response.isSuccessful) {
-                response.body().apply {
+                response.body()?.apply {
                     emit(Resource.Success(this))
                 }
             }

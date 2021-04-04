@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mburakcakir.stationapp.databinding.FragmentStationBinding
 import com.mburakcakir.stationapp.network.model.Bus
+import com.mburakcakir.stationapp.util.Status
 import com.mburakcakir.stationapp.util.navigate
 import com.mburakcakir.stationapp.util.sortBusList
 import com.mburakcakir.stationapp.util.toast
@@ -45,7 +46,6 @@ class StationFragment : Fragment() {
         stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
             binding.station = responseStation.stations[0]
             val sortedList = (responseStation.stations[0].buses as MutableList<Bus>).sortBusList()
-//            val sortedList = (responseStation.stations[0].buses as MutableList<Bus>).sortList(responseStation.stations[0].buses[0].remainingTime)
             stationAdapter.submitList(sortedList)
         }
 
@@ -59,11 +59,17 @@ class StationFragment : Fragment() {
 
         stationViewModel.result.observe(viewLifecycleOwner, {
             when {
-                !it.success.isNullOrEmpty() -> it.success
-                !it.loading.isNullOrEmpty() -> it.loading
-                else -> it.error
-            }?.let { message ->
-                requireContext() toast message
+                !it.success.isNullOrEmpty() -> {
+                    binding.state = StationFragmentViewState(Status.SUCCESS)
+                    requireContext() toast it.success
+                }
+                !it.loading.isNullOrEmpty() -> {
+                    binding.state = StationFragmentViewState(Status.LOADING)
+                }
+                else -> {
+                    binding.state = StationFragmentViewState(Status.ERROR)
+                    binding.message = it.error
+                }
             }
         })
     }
