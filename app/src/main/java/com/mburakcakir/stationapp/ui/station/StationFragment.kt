@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.mburakcakir.stationapp.R
 import com.mburakcakir.stationapp.databinding.FragmentStationBinding
 import com.mburakcakir.stationapp.network.model.Bus
-import com.mburakcakir.stationapp.util.Status
-import com.mburakcakir.stationapp.util.navigate
-import com.mburakcakir.stationapp.util.sortBusList
-import com.mburakcakir.stationapp.util.toast
+import com.mburakcakir.stationapp.util.*
 
 class StationFragment : Fragment() {
     private var _binding: FragmentStationBinding? = null
@@ -43,6 +41,7 @@ class StationFragment : Fragment() {
 
     private fun init() {
         binding.rvStationList.adapter = stationAdapter
+
         stationViewModel.stationInfo.observe(viewLifecycleOwner) { responseStation ->
             binding.station = responseStation.stations[0]
             val sortedList = (responseStation.stations[0].buses as MutableList<Bus>).sortBusList()
@@ -67,11 +66,17 @@ class StationFragment : Fragment() {
                     binding.state = StationFragmentViewState(Status.LOADING)
                 }
                 else -> {
+                    val internetConnection =
+                        NetworkController(requireContext()).isInternetAvailable()
+                    binding.message =
+                        if (!internetConnection) getString(R.string.error_internet_connection)
+                        else it.error
+
                     binding.state = StationFragmentViewState(Status.ERROR)
-                    binding.message = it.error
+
                 }
             }
+
         })
     }
-
 }

@@ -4,7 +4,7 @@
     <item android:drawable="@android:color/white" />
     <!-- Your product logo - 144dp color version of your app icon -->
     <item
-        android:drawable="@drawable/app_logo"
+        android:drawable="@drawable/logo_app"
         android:gravity="center"
         android:left="@dimen/margin_max"
         android:right="@dimen/margin_max" />

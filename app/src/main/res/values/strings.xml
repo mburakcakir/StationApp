@@ -15,13 +15,15 @@
     <string name="search_subway">Metro duraklarını ara</string>
     <string name="search_metrobus">Metrobüs duraklarını ara</string>
     <string name="hint_search">Aramak istediğinizi belirtin</string>
+
     <!-- hint, text -->
     <string name="text_search">Ara</string>
     <string name="other_option">Diğer:</string>
     <string name="search_near">Yakınımdaki</string>
+    <string name="error_internet_connection">Internet bağlantısı sağlanamadı.</string>
 
 
-    <!-- INGILIZCE -->
+    <!-- ENGLISH -->
 
     <!--    <string name="app_name">Station App</string>-->
 
