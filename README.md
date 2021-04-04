@@ -1,4 +1,4 @@
-# [Android Station App](https://github.com/mburakcakir/AsisCT-StationApp)
+# [Android Station App](https://github.com/mburakcakir/AsisCT-StationApp/tree/master/app/src/main/java/com/mburakcakir/stationapp)
 
 ## Purpose
 You can list the buses approaching the stop, find their locations, and easily reach your desired location by accessing nearby buses, metros, metrobuses, hospitals and more. 
