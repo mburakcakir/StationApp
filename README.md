@@ -5,10 +5,10 @@ You can list the buses approaching the stop, find their locations, and easily re
 
 ## Screenshots
 <p float="left">
-  <img src="https://user-images.githubusercontent.com/53263815/113513372-1a00c300-9572-11eb-8a0d-f21aac208677.png" width="230" />
-  <img src="https://user-images.githubusercontent.com/53263815/113513408-49afcb00-9572-11eb-936d-713c012413a8.png" width="230" /> 
-  <img src="https://user-images.githubusercontent.com/53263815/113513427-56ccba00-9572-11eb-97b8-d378dcd4a56a.png" width="230" />
-  <img src="https://user-images.githubusercontent.com/53263815/113513429-5d5b3180-9572-11eb-92dc-c2d40fb5b092.png" width="230" />
+  <img src="https://user-images.githubusercontent.com/53263815/113513372-1a00c300-9572-11eb-8a0d-f21aac208677.png" width="200" />
+  <img src="https://user-images.githubusercontent.com/53263815/113513408-49afcb00-9572-11eb-936d-713c012413a8.png" width="200" /> 
+  <img src="https://user-images.githubusercontent.com/53263815/113513427-56ccba00-9572-11eb-97b8-d378dcd4a56a.png" width="200" />
+  <img src="https://user-images.githubusercontent.com/53263815/113513429-5d5b3180-9572-11eb-92dc-c2d40fb5b092.png" width="200" />
 </p>
 
 ## Libraries and tools 🛠
