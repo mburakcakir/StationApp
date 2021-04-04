@@ -11,6 +11,9 @@ You can list the buses approaching the stop, find their locations, and easily re
   <img src="https://user-images.githubusercontent.com/53263815/113513429-5d5b3180-9572-11eb-92dc-c2d40fb5b092.png" width="200" />
 </p>
 
+## Usage
+<img src="https://user-images.githubusercontent.com/53263815/113519090-c05cc080-9592-11eb-985d-913935ffdc76.gif" width="250" />
+
 ## Libraries and tools 🛠
 <li><a href="https://developer.android.com/topic/libraries/architecture/viewmodel">ViewModel</a></li>
 <li><a href="https://developer.android.com/topic/libraries/architecture/livedata">LiveData</a></li>
